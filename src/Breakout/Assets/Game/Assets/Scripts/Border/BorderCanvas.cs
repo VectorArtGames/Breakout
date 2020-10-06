@@ -31,9 +31,8 @@ public class BorderCanvas : MonoBehaviour
 	public void UpdateBorder()
 	{
 		if (!(ContainerCanvas is RectTransform t && t.rect is Rect rect)) return;
-		var aspect = cam.orthographicSize / cam.aspect;
-		Width = (rect.width - 50) / aspect;
-		Height = (rect.height - 50) / aspect;
+		Width = rect.width - 50;
+		Height = rect.height - 50;
 	}
 
 	public void OnRectTransformDimensionsChange()
