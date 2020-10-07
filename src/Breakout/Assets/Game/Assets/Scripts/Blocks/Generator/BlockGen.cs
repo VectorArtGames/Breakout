@@ -20,8 +20,9 @@ public class BlockGen : MonoBehaviour
 
     public void RegenerateBlocks()
 	{
-		var w = thisRect.rect.width / 25;
-		var h = (thisRect.rect.height - 50) / 50;
+		var rect = thisRect.rect;
+		var w = rect.width / 25;
+		var h = ((rect.height - 50) / 2) / 5;
 
 		for (var i = 0; i < 25; i++) // X
 		{

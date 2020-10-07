@@ -39,11 +39,15 @@ public class PaddleMove : MonoBehaviour
 
     private void BallMove(BallPhysics physics, RectTransform rect)
 	{
-        var p = transform.localPosition;
+        var paddle = transform.localPosition;
         var ball = physics.transform.localPosition;
-        if (p.x > ball.x && ball.x < p.x + rect.rect.width)
-		{
-            Debug.Log("Yes");
-		}
+        if (!(ball.x + rect.rect.width / 2 > paddle.x - thisRect.rect.width / 2 && paddle.x + thisRect.rect.width / 2 > ball.x - rect.rect.width / 2 &&
+              ball.y <= paddle.y + thisRect.rect.height + rect.rect.height * 2)) return;
+        if (physics.velocity.y > 0) return;
+        var n = (ball - paddle).normalized;
+
+        Debug.Log(n);
+		physics.velocity.y *= -1;
+		physics.velocity.x = n.x;
 	}
 }
