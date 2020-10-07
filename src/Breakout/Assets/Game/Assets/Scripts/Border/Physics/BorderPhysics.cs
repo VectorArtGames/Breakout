@@ -30,31 +30,29 @@ public class BorderPhysics : MonoBehaviour
     {
 	    var ball = physics.transform.localPosition;
 	    var border = transform.localPosition;
+
 	    switch (side)
 	    {
 		    case BorderSide.Left when !(ball.x - rect.rect.width / 2 <= border.x + thisRect.rect.width):
-			    return;
-		    case BorderSide.Left:
-			    Debug.Log(transform.localPosition);
+				return;
+		    case BorderSide.Left: // Left
 
 			    physics.velocity.x *= -1;
-			    physics.Speed *= 1.05f;
-			    break;
+			    physics.Speed *= 1.25f;
+				break;
 		    case BorderSide.Right when !(ball.x + rect.rect.width / 2 >= border.x - thisRect.rect.width):
-			    return;
-		    case BorderSide.Right:
-			    Debug.Log(transform.localPosition);
+				return;
+		    case BorderSide.Right: // Right
 
 			    physics.velocity.x *= -1;
-			    physics.Speed *= 1.05f;
+			    physics.Speed *= 1.25f;
 			    break;
 		    case BorderSide.Top when !(ball.y - rect.rect.height / 2 >= border.y - thisRect.rect.height):
 			    return;
-		    case BorderSide.Top:
-			    Debug.Log(transform.localPosition);
+		    case BorderSide.Top: // Top
 
 			    physics.velocity.y *= -1;
-			    physics.Speed *= 1.05f;
+			    physics.Speed *= 1.25f;
 			    break;
 	    }
     }

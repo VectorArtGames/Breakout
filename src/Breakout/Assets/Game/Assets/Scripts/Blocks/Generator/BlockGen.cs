@@ -21,8 +21,8 @@ public class BlockGen : MonoBehaviour
     public void RegenerateBlocks()
 	{
 		var rect = thisRect.rect;
-		var w = rect.width / 25;
-		var h = ((rect.height - 50) / 2) / 5;
+		var w = (rect.width - 100) / 25;
+		var h = (rect.height - 50) / 2 / 5 / 2;
 
 		for (var i = 0; i < 25; i++) // X
 		{
@@ -38,7 +38,9 @@ public class BlockGen : MonoBehaviour
 		var obj = new GameObject($"Block_{x}_{y}", new[] {
 				typeof(RectTransform),
 				typeof(CanvasRenderer),
-				typeof(Image)
+				typeof(Image),
+				typeof(BlockInfo),
+				typeof(BlockPhysics)
 			});
 
 		if (!obj.TryGetComponent(out RectTransform rect) || !obj.TryGetComponent(out Image img)) return;
@@ -46,7 +48,7 @@ public class BlockGen : MonoBehaviour
 		var color = Color.HSVToRGB(Mathf.Sin(y) * Mathf.Cos(y), 1f, 1f);
 		var anchor = new Vector2(0, 1);
 
-		obj.transform.localPosition = new Vector2((w / 2) + w * x, (50 + h * y * 3) * -1);
+		obj.transform.localPosition = new Vector2(50 + (w / 2) + w * x, ((50 * 2) + h * (y * 2)) * -1);
 
 		rect.anchorMax = anchor;
 		rect.anchorMin = anchor;
